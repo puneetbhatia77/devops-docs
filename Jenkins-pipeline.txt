@@ -1,0 +1,43 @@
+Ref : https://www.edureka.co/blog/jenkins-pipeline-tutorial-continuous-delivery
+Git repo forked from : https://github.com/Zulaikha12/git-test
+
+First Job
+New Item -> pipeline -> demo1
+Pipeline -> pipeline script from SCM (declarative pipeline)
+	GIT : https://github.com/puneetbhatia77/git-test.git
+	Script Path : Jenkinsfile.txt
+
+
+-------------------------------------------------------------------------------
+Second Job
+New Item -> pipeline -> Scripted Pipeline Demo
+Pipeline -> pipeline script
+
+node {
+      
+	for (i=0; i<2; i++) { 
+           
+		stage "Stage #"+i
+           
+		print 'Hello, world !'
+          
+		if (i==0)
+           
+		{
+               
+			echo 'Running on Stage #0'
+          
+		 }
+           
+		else {
+               
+			build 'demo1'
+              
+			 echo 'Running on Stage #1'
+           
+		}
+      
+	}
+
+}
+------------------------------------------------------------------------------------------
