@@ -1,0 +1,37 @@
+install Oracle Virtualbox
+install vagrant
+
+
+Open Oracle virtualbox -> files -> preferences -> general -> Default machine folder : E:\VM\vagrant\images
+
+
+
+From vagrantcloud website,  get bento ubuntu base box
+cd E:\VM\vagrant\images
+vagrant init or vagrant init bento/ubuntu-16.04                    ->  it will create Vagrantfile under E:\VM\vagrant\images
+E:\VM\vagrant\images\>vagrant up        
+stop vagrant 
+rename from VM using option settings ->  General -> Name -> ubuntu64
+from command prompt, run vagrant ssh
+
+
+
+
+
+vi /etc/network/interfaces
+--------------------------------------------
+
+auto eth0
+iface eth0 inet dhcp
+pre-up sleep 2
+
+auto eth1
+iface eth1 inet static
+address 192.168.56.101
+netmask 255.255.255.0
+network 192.168.56.0
+broadcast 192.168.56.255
+-----------------------------------------------------------
+/etc/init.d/networking restart    # reboot network
+
+

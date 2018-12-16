@@ -1,0 +1,64 @@
+# Pre-requisite for Jenkins
+
+sudo apt update
+sudo apt install openjdk-8-jdk
+sudo apt-get install maven
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+
+
+-----------------------------------------------------
+HelloWorld Java program
+In case Jenkins home dir : /var/lib/jenkins
+create Project folder under "/var/lib/jenkins" in VM
+
+vi helloworld.java
+-----------
+public class helloworld{
+
+	public static void main(String[] args){
+		
+		System.out.println("Hello World ...");
+	}
+}
+------------
+
+first run this program from VM shell
+	javac helloworld.java
+	java helloworld
+------------
+
+In Jenkins, create job helloworld
+In execute shell
+
+	cd /var/lib/jenkins/project/
+	javac helloworld.java
+	java helloworld
+--------------------------------------------------------------------------------------------
+
+In Jenkins, create new job helloworldgit
+Under VM location,  /var/lib/jenkins/project/,   run 
+
+root@vagrant:/var/lib/jenkins/project#git init
+git add .
+git commit -m "....."
+
+Under github, create new repo "helloworld"
+Run commands
+
+git remote add origin https://github.com/puneetbhatia77/helloworld.git
+git push -u origin master
+
+And in source code management, select Git
+and Repositories, repository URL : https://github.com/puneetbhatia77/helloworld
+Build Triggers -> Poll SCM : * * * * *
+
+In execute shell
+
+	cd /var/lib/jenkins/project/
+	javac helloworld.java
+	java helloworld
+
+It will poll scm for change and tigger build.
+---------------------------------------------------------------------------------------------------------------------

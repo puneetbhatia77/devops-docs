@@ -1,0 +1,16 @@
+configure ssh keys for github.
+
+copy ~/.ssh/id_rsa.pub and upload to github at https://github.com/settings/keys - new ssh keys
+
+then clone again as "git clone git@github.com:puneetbhatia77/helloworld.git"
+
+or modify .git/config
+
+[remote "origin"]
+        url = git@github.com:puneetbhatia77/helloworld.git
+
+To verify the connection, "ssh -T git@github.com".
+Now you can push without entering password. "git push origin master".
+
+If you change private key "~/.ssh/id_rsa" in local machine or delete ssh key from git hub and try  "ssh -T git@github.com".  or "git push origin master" then it will not allow.
+

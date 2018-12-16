@@ -1,0 +1,54 @@
+docker install steps  : https://www.liquidweb.com/kb/install-docker-ubuntu-16-04/
+
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" | tee /etc/apt/sources.list.d/docker.list
+apt-get update   # if error then "sudo apt-get install apt-transport-https"
+apt-cache policy docker-ce   # To Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
+systemctl status docker       # if not running then run below commands
+
+systemctl start docker.service
+systemctl enable docker.service          # to auto-start after reboot
+
+
+---------------------------------------------------------------------
+
+Docker Compose installation steps       :  https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
+
+Test
+
+docker run hello-world   # pulls the image from docker hub
+or
+
+mkdir hello-world
+cd hello-world
+vi docker-compose.yml
+	my-test:
+	  image: hello-world
+docker-compose up
+
+
+docker images
+docker ps   # nothing
+docker ps -a
+
+
+docker rm <container id>    # to delete container
+docker rmi hello-world
+
+docker run -it ubuntu bash   # pull ubuntu image and run container by loging into it.
+exit
+
+
+------------------------------------------------------------------------------------
+docker with Jenkins
+
+https://hackernoon.com/making-right-things-using-docker-7296cf0f6c6e
+
+docker run --name jenkins -p 8080:8080 -d jenkins
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
